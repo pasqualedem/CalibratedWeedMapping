@@ -1,0 +1,9 @@
+RoWeeder/
+experiments/
+weights/
+.venv/
+
+RedEdge.zip
+
+
+**.pyc
