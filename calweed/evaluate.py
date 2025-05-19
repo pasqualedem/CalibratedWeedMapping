@@ -14,6 +14,9 @@ def make_predictions(model, test_dataloader, calibrate_fn=None, parameters=None)
 
     # Set to evaluation mode
     model.eval()
+    
+    all_logits = []
+    all_labels = []
 
     # Dataloader returns a single batch of all test images
     for idx, batch in enumerate(tqdm(test_dataloader)):
@@ -27,19 +30,22 @@ def make_predictions(model, test_dataloader, calibrate_fn=None, parameters=None)
 
         # forward pass
         with torch.no_grad():
-            outputs = model(pixel_values=pixel_values)
+            outputs = model(pixel_values=pixel_values).logits
+            
+        all_logits.append(outputs.cpu())
+        all_labels.append(labels.cpu())
+            
 
-    # PROBLEM: logits are of shape (batch_size, num_labels, height/4, width/4)
-    logits = outputs.logits.cpu()
-    # print(f"Logits shape -> {logits.shape}")
+    logits = torch.cat(all_logits, dim=0)
+    labels = torch.cat(all_labels, dim=0)
 
     """
-  This dimensions is a PROBLEM, so:
-  1. Reshape the logits tensor shape to be the same as the input one.
-  2. Calibrate the logits (if there is a tecnique)
-  3. Apply a softmax to the logits.
-  4. Compact channels by classifying each pixel
-  """
+    This dimensions is a PROBLEM, so:
+    1. Reshape the logits tensor shape to be the same as the input one.
+    2. Calibrate the logits (if there is a tecnique)
+    3. Apply a softmax to the logits.
+    4. Compact channels by classifying each pixel
+    """
 
     # Scale width-height of prediction tensor to the shape of ground truth tensor
     upsampled_logits = nn.functional.interpolate(
