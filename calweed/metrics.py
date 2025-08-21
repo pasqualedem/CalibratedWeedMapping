@@ -50,7 +50,7 @@ def expected_calibration_error(logits, predicted_labels, true_labels, M=5):
     return ece.item(), accuracy_in_bin_list, avg_confidence_in_bin_list
 
 
-def show_reliability_diagram(accuracy_bins, ece=None):
+def show_reliability_diagram(accuracy_bins, ece=None, show_title=True, show_xlabel=True, show_ylabel=True):
 
     # Create a figure and axis
     fig, ax = plt.subplots(figsize=(6, 4))
@@ -97,8 +97,12 @@ def show_reliability_diagram(accuracy_bins, ece=None):
         align="center",
     )
 
-    ax.set_ylabel("Accuracy")
-    ax.set_title("Reliability Diagram")
+    if show_title:
+        ax.set_title("Reliability Diagram")
+    if show_xlabel:
+        ax.set_xlabel("Confidence")
+    if show_ylabel:
+        ax.set_ylabel("Accuracy")
     ax.set_xticks(confidence_bins)
     ax.legend(
         [bar1, bar2],
