@@ -70,3 +70,29 @@ Or the calibrated one:
 ```bash
 python main.py evaluate --model mobilenetv4 --calibration_tecnique temperature_scaling --calibration_params weights/mobilenetv4_calibrated_n30_temperature_scaling_ckpt_mobilenetv4_focal_gamma2.pkl --checkpoint weights/mobilenetv4_focal_gamma2.0.pth
 ```
+
+## Repo Structure
+
+```
+📦 CalibratedWeedMapping
+├─ .gitignore
+├─ .python-version
+├─ .vscode
+│  └─ launch.json
+├─ README.md
+├─ calibration.ipynb
+├─ calweed
+│  ├─ calibrate.py
+│  ├─ data.py
+│  ├─ evaluate.py
+│  ├─ metrics.py
+│  ├─ model.py
+│  ├─ train.py
+│  └─ weedmap.py
+├─ download.sh
+├─ main.py
+├─ pyproject.toml
+├─ qualitative.ipynb
+├─ script.sh
+└─ uv.lock
+```
