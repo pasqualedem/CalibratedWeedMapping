@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Paper](https://img.shields.io/badge/paper-ECAI%202025-red.svg)](https://ecai2025.org/)
 [![Workshop](https://img.shields.io/badge/workshop-Green--aware%20AI%202025-brightgreen.svg)](https://green-aware2025.web.app/)
@@ -33,7 +33,7 @@ Our work addresses the critical challenge of reliable weed detection in precisio
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.12 or higher
 - [uv](https://docs.astral.sh/uv/) package manager
 
 ### Installation
